@@ -58,3 +58,20 @@ def delete_task(task_id):
     conn.close()
 
     return deleted
+
+def mark_done(task_id):
+    
+    
+    conn = get_connect()
+    cursor = conn.cursor()
+
+
+    cursor.execute("""
+        UPDATE task SET status = ? WHERE id = ?
+        """,("Done",task_id))
+    
+    conn.commit()
+    updated = cursor.rowcount
+    conn.close()
+
+    return updated 
