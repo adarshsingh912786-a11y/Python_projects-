@@ -2,7 +2,9 @@ from dataofexpense import (
     create_table,
     add_expense,
     view_expense,
-    delete_expense
+    delete_expense,
+    get_total_expense,
+    get_total_by_category
 
 )
 
@@ -12,7 +14,7 @@ def main():
 
     while True:
         print("\n-------- Expense Tracker -------")
-        print("1. Add Expenses \n2. View Expense Record \n3. Delete Expense \n4.Exit")
+        print("1. Add Expenses \n2. View Expense Record \n3. Delete Expense \n4.View Total Expense \n5.Exit")
 
         choice = int(input("Choose from menu (1-4):  "))
 
@@ -44,10 +46,21 @@ def main():
             expense_id = int(input("\n Enter the expense id to delete: "))
 
             delete_expense(expense_id)
-            print("\n One Expense Delete Successfully")        
+            print("\n One Expense Delete Successfully")  
 
 
-        elif choice ==  4:
+        elif choice == 4:
+            total_expense = get_total_expense()
+            print(f"\n Total Expenses: {total_expense}")
+
+            total_expense_by_category = get_total_by_category()
+            print("\n ------- By Category -------")
+            
+            for category,total in total_expense_by_category:
+                print(f"{category}:{total}")          
+
+
+        elif choice ==  5:
             print("Done with updation!")
             break
         else:
