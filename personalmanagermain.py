@@ -2,7 +2,7 @@ from personalmanagercon import(
     set_budget
 )
 
-from database import(
+from personaldatabase import(
     add_expense,
     create_table
 )
@@ -71,3 +71,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
