@@ -13,6 +13,7 @@ from personalreports import get_remaining_budget
 from personalanalytics import(
     get_monthly_total,
     get_category_summary,
+    compare_month
 )
 
 
@@ -23,8 +24,14 @@ def main():
     while True:
 
         print("\n----------------Finance Manager---------------")
-        print("1️⃣. Set Monthly Budget \n2️⃣. Add Expense \n3️⃣. View Remaining budget \n4️⃣. View Monthly Expense \n5️⃣. Exit")
-
+        print("""
+           1️⃣. Set Monthly Budget
+           2️⃣. Add Expense
+           3️⃣. View Remaining Budget
+           4️⃣. View Monthly Expense
+           5️⃣. Compare Monthly Spendings
+           6️⃣. Exit
+             """)
         choice = input("Choose action from menu (1-4) : ")
 
         if choice == "1":
@@ -84,10 +91,23 @@ def main():
                         print(f"{category} : {amount}")
                 else:
                     print("Nothing to show")
+
+        elif choice == "5":
+            
+            month = input("Enter the month (YYYY-MM): ")
+            current_total = get_monthly_total(month)
+            prev_total = compare_month(month)
+
+            if prev_total == 0:
+                print("NO data for previous month")
+            elif current_total > prev_total : 
+                print(f"Spendings increased by : {current_total - prev_total}")
+            else:
+                print(f"Good Job! Spending reduced by : {prev_total -  current_total}")            
         
 
 
-        elif choice == "5" :
+        elif choice == "6" :
             print("Goodbye...")
             break
 
